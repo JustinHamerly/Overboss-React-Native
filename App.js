@@ -1,23 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
+import Header from './components/Header';
+import Interface from './components/Interface';
+
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Header - navbar drawer, logo, login/logout</Text>
-      <Text>Game Interface</Text>
-      
+    <View style={styles.appContainer}>
+      <Header />
+      <Interface />
       <StatusBar style="auto" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  appContainer: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#fff',
+    backgroundColor: '#EBD475',
     alignItems: 'center',
     justifyContent: 'center',
-  },
+  }
 });
