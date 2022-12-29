@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "OCFrontend",
-    "slug": "OCFrontend",
+    "name": "OverbossCompanion",
+    "slug": "OverbossCompanion",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
