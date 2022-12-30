@@ -1,5 +1,5 @@
 {
-  "name": "ocfrontend",
+  "name": "overbosscompanion",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -9,7 +9,6 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@expo/vector-icons": "^13.0.0",
     "expo": "~47.0.9",
     "expo-status-bar": "~1.4.2",
     "react": "18.1.0",
