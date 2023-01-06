@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#65278E',
     width: '100%',
-    height: '10%',
     padding: 10
   },
   headerText: {
