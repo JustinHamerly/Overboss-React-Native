@@ -1,89 +1,88 @@
 import React, { useState } from "react";
-import { StyleSheet, TextInput, View, Text } from 'react-native';
-import { Picker } from '@react-native-picker/picker'
+import { StyleSheet, ScrollView, Text, View, Pressable } from 'react-native';
+import PlayerPicker from "./PlayerPicker";
+import TerrainPicker from "./TerrainPicker";
 
 export default function NewGameForm() {
-  const [playerCount, setPlayerCount] = useState(1)
+  const [playerCount, setPlayerCount] = useState(1);
+  const [terrain, setTerrain] = useState([]);
+  const [terrainCount, setTerrainCount] = useState(0);
+
+  const addTerrain = (name) => {
+    setTerrain(prev => [...prev, name])
+    setTerrainCount(prev => prev + 1)
+  }
+
+  const removeTerrain = (name) => {
+    let filtered = terrain.filter(tName => tName !== name)
+    setTerrain(filtered)
+    setTerrainCount(prev => prev - 1)
+  }
 
   return (
     <View style={styles.form}>
       <Text style={styles.formHeader}>PLAYERS</Text>
-      <View style={styles.playerCount}>
-        <Picker
-          style={styles.picker}
-          selectedValue={playerCount}
-          onValueChange={(itemValue) => setPlayerCount(itemValue)}
-        >
-          <Picker.Item label='1' value={1} />
-          <Picker.Item label='2' value={2} />
-          <Picker.Item label='3' value={3} />
-          <Picker.Item label='4' value={4} />
-        </Picker>
-        <View>
-
-          {
-            Array(playerCount).fill('p').map((player, i) => {
-              return (
-                <TextInput
-                  key={`player${i + 1}`}
-                  style={styles.formTextInput}
-                  placeholder={`enter player ${i + 1}`}
-                ></TextInput>
-              )
-            })
-          }
-        </View>
+      <View style={styles.players} >
+        <PlayerPicker
+          playerCount={playerCount}
+          setPlayerCount={setPlayerCount}
+        />
       </View>
+
       <Text style={styles.formHeader}>TERRAIN</Text>
+      <ScrollView style={styles.scroll} >
+        <TerrainPicker
+          addTerrain={addTerrain}
+          removeTerrain={removeTerrain}
+          terrainCount={terrainCount}
+        />
+      </ScrollView>
+      <Pressable style={styles.submitButton}>
+        <Text style={styles.submitButtonText}>New Game</Text>
+      </Pressable>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   form: {
-    display: 'flex',
+    backgroundColor: 'black',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#65278E',
     padding: 10,
     borderRadius: 10,
     width: '95%',
-    marginTop: 20,
-    marginBottom: 20
+    height: '90%'
   },
-  playerCount: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 200
+  players: {
+    flex: 1,
+    backgroundColor: '#65278E',
+    borderRadius: 10,
+    marginTop: 10,
+    marginBottom: 10
   },
-  picker: {
-    display: 'flex',
-    justifyContent: 'center',
-    width: 75,
-    backgroundColor: '#FFF',
-    borderColor: '#119047',
-    borderWidth: 3,
-    borderRadius: '25%',
-    height: 75
+  scroll: {
+    flex: 1,
+    backgroundColor: '#65278E',
+    borderRadius: 10,
+    marginTop: 10,
+    marginBottom: 10,
+    width: '100%'
   },
   formHeader: {
     fontSize: 25,
     color: '#FFF'
   },
-  formLabel: {
-    fontSize: 10,
-    color: '#FFF'
-  },
-  formTextInput: {
-    borderColor: '#119047',
-    borderWidth: 3,
-    borderRadius: '10%',
-    padding: 5,
-    margin: 5,
+  submitButton: {
     width: 200,
-    backgroundColor: '#FFF'
+    backgroundColor: 'green',
+    borderRadius: 10
+  },
+  submitButtonText: {
+    fontSize: 25,
+    color: '#FFF',
+    padding: 10,
+    textAlign: 'center'
   }
 })
 

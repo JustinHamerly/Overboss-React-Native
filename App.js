@@ -6,10 +6,9 @@ import Interface from './components/main/Interface';
 
 export default function App() {
   return (
-
     <View style={styles.appContainer}>
-      <Header />
-      <Interface />
+      <Header style={styles.header}/>
+      <Interface style={styles.interface}/>
       <StatusBar style="auto" />
     </View >
   );
@@ -18,9 +17,14 @@ export default function App() {
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
-    flexDirection: 'column',
     backgroundColor: '#EBD475',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
+  },
+  header: {
+    flex: 2
+  },
+  interface: {
+    flex: 4
   }
 });
