@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Picker } from '@react-native-picker/picker'
 import { StyleSheet, TextInput, View, Text } from 'react-native';
 
 const PlayerPicker = (props) => {
+  
   return (
     <View style={styles.playerCount}>
       <Picker
@@ -22,6 +23,7 @@ const PlayerPicker = (props) => {
               key={`player${i + 1}`}
               style={styles.formTextInput}
               placeholder={`enter player ${i + 1}`}
+              onChange={name => props.setPlayers(prev => prev[i] = name)}
             ></TextInput>
           )
         })}

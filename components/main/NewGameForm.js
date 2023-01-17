@@ -5,6 +5,7 @@ import TerrainPicker from "./TerrainPicker";
 
 export default function NewGameForm() {
   const [playerCount, setPlayerCount] = useState(1);
+  const [players, setPlayers] = useState([]);
   const [terrain, setTerrain] = useState([]);
   const [terrainCount, setTerrainCount] = useState(0);
 
@@ -19,6 +20,10 @@ export default function NewGameForm() {
     setTerrainCount(prev => prev - 1)
   }
 
+  const createNewGame = () => {
+
+  }
+
   return (
     <View style={styles.form}>
       <Text style={styles.formHeader}>PLAYERS</Text>
@@ -26,6 +31,7 @@ export default function NewGameForm() {
         <PlayerPicker
           playerCount={playerCount}
           setPlayerCount={setPlayerCount}
+          setPlayers={setPlayers}
         />
       </View>
 
@@ -37,9 +43,10 @@ export default function NewGameForm() {
           terrainCount={terrainCount}
         />
       </ScrollView>
-      <Pressable style={styles.submitButton}>
+      <Pressable style={styles.submitButton} onPress={createNewGame}>
         <Text style={styles.submitButtonText}>New Game</Text>
       </Pressable>
+      <Text>{JSON.stringify(players)}</Text>
     </View>
   )
 }
